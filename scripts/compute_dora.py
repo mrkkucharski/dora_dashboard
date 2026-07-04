@@ -14,7 +14,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
-PUBLIC_DATA_DIR = ROOT / "dashboard" / "public" / "data"
+PUBLIC_DATA_DIR = ROOT / "app" / "public" / "data"
 
 DATA_FILES = [
     "dora-summary.json",

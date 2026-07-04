@@ -20,6 +20,16 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dashboard dependencies
+        run: npm install --prefix app
+
       - name: Run collectors
         env:
           GITHUB_TOKEN: ${{ secrets.DORA_GITHUB_TOKEN }}
@@ -35,9 +45,10 @@ jobs:
           python scripts/collect_spinnaker.py
           python scripts/normalize_events.py
           python scripts/compute_dora.py
+          npm run build --prefix app
 
       - name: Commit refreshed data
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Refresh DORA dashboard data"
-          file_pattern: "data/*.json dashboard/public/data/*.json"
+          file_pattern: "data/*.json app/public/data/*.json docs/**"

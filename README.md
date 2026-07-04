@@ -13,7 +13,8 @@ Static React + Vite dashboard for DORA delivery metrics. The first version uses 
 ## Repository Layout
 
 ```text
-dashboard/            React + Vite + TypeScript + Tailwind frontend
+app/                  React + Vite + TypeScript + Tailwind frontend
+docs/                 Built static dashboard published by GitHub Pages
 data/                 Generated dashboard JSON contract
 scripts/              Future collectors and DORA metric generation
 .github/workflows/    Scheduled data refresh and GitHub Pages deployment
@@ -24,7 +25,7 @@ scripts/              Future collectors and DORA metric generation
 Install dependencies:
 
 ```bash
-npm install --prefix dashboard
+npm install --prefix app
 ```
 
 Prepare the dashboard-readable data files:
@@ -47,7 +48,7 @@ npm run build
 
 ## Data Contract
 
-The frontend only reads generated JSON files from `dashboard/public/data/` at runtime. Source/generated data is kept in `data/`:
+The frontend only reads generated JSON files from `app/public/data/` at build time and from `docs/data/` after publishing. Source/generated data is kept in `data/`:
 
 - `data/dora-summary.json`
 - `data/deployments.json`
@@ -55,7 +56,7 @@ The frontend only reads generated JSON files from `dashboard/public/data/` at ru
 - `data/build-health.json`
 - `data/pipeline-health.json`
 
-`scripts/compute_dora.py` currently validates the mock JSON and mirrors it into `dashboard/public/data/`. Future implementations should compute these files from normalized events instead of calculating metrics in the browser.
+`scripts/compute_dora.py` currently validates the mock JSON and mirrors it into `app/public/data/`. `npm run build` then writes the publishable static dashboard into `docs/`. Future implementations should compute these files from normalized events instead of calculating metrics in the browser.
 
 ## Metric Assumptions
 
@@ -79,7 +80,13 @@ Recommended secret and variable names are already referenced in `.github/workflo
 
 ## GitHub Pages
 
-Enable Pages in the repository settings and use GitHub Actions as the Pages source. The `deploy-pages.yml` workflow installs dependencies, prepares static JSON data, builds `dashboard/dist`, and publishes it with `actions/deploy-pages`.
+Enable Pages in the repository settings with branch publishing:
+
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/docs`
+
+The committed `docs/` folder contains the built static dashboard. The optional `deploy-pages.yml` workflow can also publish the same build as a Pages artifact if the repository is later switched back to GitHub Actions Pages mode.
 
 The `refresh-data.yml` workflow runs manually and on this cron schedule:
 

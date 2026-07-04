@@ -1,11 +1,11 @@
 node_modules/
-dashboard/node_modules/
-dashboard/dist/
+app/node_modules/
+app/dist/
 .DS_Store
 __pycache__/
 .pytest_cache/
 .venv/
 *.log
 *.tsbuildinfo
-dashboard/vite.config.js
-dashboard/vite.config.d.ts
+app/vite.config.js
+app/vite.config.d.ts

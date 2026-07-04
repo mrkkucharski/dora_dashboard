@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "dashboard/**"
+      - "app/**"
       - "data/**"
       - "scripts/**"
       - ".github/workflows/deploy-pages.yml"
@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: dashboard/package-lock.json
+          cache-dependency-path: app/package-lock.json
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -40,13 +40,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: npm install --prefix dashboard
+        run: npm install --prefix app
 
       - name: Prepare dashboard data
         run: python scripts/compute_dora.py
 
       - name: Build dashboard
-        run: npm run build --prefix dashboard
+        run: npm run build --prefix app
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -54,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard/dist
+          path: docs
 
   deploy:
     environment:

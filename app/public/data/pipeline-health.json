@@ -1,0 +1,59 @@
+{
+  "pipelineHealthTrend": [
+    { "date": "2026-06-21", "success": 8, "failure": 1 },
+    { "date": "2026-06-22", "success": 11, "failure": 1 },
+    { "date": "2026-06-23", "success": 9, "failure": 2 },
+    { "date": "2026-06-24", "success": 13, "failure": 1 },
+    { "date": "2026-06-25", "success": 10, "failure": 1 },
+    { "date": "2026-06-26", "success": 14, "failure": 1 },
+    { "date": "2026-06-27", "success": 7, "failure": 0 },
+    { "date": "2026-06-28", "success": 5, "failure": 0 },
+    { "date": "2026-06-29", "success": 12, "failure": 1 },
+    { "date": "2026-06-30", "success": 12, "failure": 2 },
+    { "date": "2026-07-01", "success": 9, "failure": 1 },
+    { "date": "2026-07-02", "success": 11, "failure": 1 },
+    { "date": "2026-07-03", "success": 10, "failure": 2 },
+    { "date": "2026-07-04", "success": 8, "failure": 0 }
+  ],
+  "failedDeploymentCandidates": [
+    {
+      "id": "deploy-1046",
+      "completedAt": "2026-07-03T21:04:00Z",
+      "team": "Data",
+      "repository": "analytics-jobs",
+      "service": "analytics",
+      "environment": "production",
+      "pipeline": "analytics-prod",
+      "status": "rolled_back",
+      "reason": "Data quality verification failed",
+      "owner": "data-platform",
+      "recoveryMinutes": 58
+    },
+    {
+      "id": "deploy-1044",
+      "completedAt": "2026-07-03T11:11:00Z",
+      "team": "Core Banking",
+      "repository": "ledger-worker",
+      "service": "ledger",
+      "environment": "production",
+      "pipeline": "ledger-prod",
+      "status": "failed_verification",
+      "reason": "Synthetic transaction latency exceeded SLO",
+      "owner": "ledger-oncall",
+      "recoveryMinutes": 56
+    },
+    {
+      "id": "deploy-1037",
+      "completedAt": "2026-06-30T16:44:00Z",
+      "team": "Platform",
+      "repository": "identity-service",
+      "service": "identity",
+      "environment": "production",
+      "pipeline": "identity-prod",
+      "status": "rollback_candidate",
+      "reason": "Elevated 5xx rate during canary",
+      "owner": "platform-oncall",
+      "recoveryMinutes": 34
+    }
+  ]
+}
