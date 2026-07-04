@@ -1,0 +1,25 @@
+{
+  "metricDefinitions": {
+    "deploymentFrequency": {
+      "sourceOfTruth": "Spinnaker production pipeline completion events",
+      "calculation": "Count successful production deployments per day over the selected period"
+    },
+    "leadTimeForChanges": {
+      "sourceOfTruth": "GitHub pull request merge timestamp to Spinnaker production completion",
+      "calculation": "Median elapsed time from PR merge to first production deployment containing the change"
+    },
+    "changeFailureRate": {
+      "sourceOfTruth": "Spinnaker production deployments with rollback, incident, or failed verification markers",
+      "calculation": "Failed production deployments divided by total production deployments"
+    },
+    "failedDeploymentRecoveryTime": {
+      "sourceOfTruth": "Spinnaker rollback and remediation deployment events",
+      "calculation": "Median elapsed time from failed deployment detection to recovered production state"
+    }
+  },
+  "sources": {
+    "github": "PR merge timestamp is the default change start time",
+    "jenkins": "Build health context",
+    "spinnaker": "Production deployment source of truth"
+  }
+}
