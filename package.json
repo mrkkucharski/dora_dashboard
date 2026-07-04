@@ -1,0 +1,11 @@
+{
+  "name": "dora-kpi-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "npm --prefix dashboard run dev",
+    "build": "npm --prefix dashboard run build",
+    "preview": "npm --prefix dashboard run preview",
+    "refresh:data": "python3 scripts/normalize_events.py && python3 scripts/compute_dora.py"
+  }
+}

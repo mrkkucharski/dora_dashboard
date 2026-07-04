@@ -1,0 +1,18 @@
+{
+  "leadTimeTrend": [
+    { "date": "2026-06-21", "medianHours": 24.5, "p95Hours": 58.8 },
+    { "date": "2026-06-22", "medianHours": 22.1, "p95Hours": 53.4 },
+    { "date": "2026-06-23", "medianHours": 21.6, "p95Hours": 50.2 },
+    { "date": "2026-06-24", "medianHours": 19.4, "p95Hours": 44.7 },
+    { "date": "2026-06-25", "medianHours": 20.8, "p95Hours": 47.3 },
+    { "date": "2026-06-26", "medianHours": 18.9, "p95Hours": 42.1 },
+    { "date": "2026-06-27", "medianHours": 17.6, "p95Hours": 39.9 },
+    { "date": "2026-06-28", "medianHours": 18.2, "p95Hours": 41.0 },
+    { "date": "2026-06-29", "medianHours": 20.1, "p95Hours": 46.8 },
+    { "date": "2026-06-30", "medianHours": 19.7, "p95Hours": 45.6 },
+    { "date": "2026-07-01", "medianHours": 18.4, "p95Hours": 40.2 },
+    { "date": "2026-07-02", "medianHours": 17.9, "p95Hours": 38.8 },
+    { "date": "2026-07-03", "medianHours": 18.6, "p95Hours": 43.5 },
+    { "date": "2026-07-04", "medianHours": 16.8, "p95Hours": 37.1 }
+  ]
+}

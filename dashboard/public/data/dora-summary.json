@@ -1,0 +1,111 @@
+{
+  "lastRefreshed": "2026-07-04T10:45:00Z",
+  "period": {
+    "from": "2026-06-21",
+    "to": "2026-07-04"
+  },
+  "metricDefinitions": {
+    "deploymentFrequency": {
+      "sourceOfTruth": "Spinnaker production pipeline completion events",
+      "calculation": "Count successful production deployments per day over the selected period"
+    },
+    "leadTimeForChanges": {
+      "sourceOfTruth": "GitHub pull request merge timestamp to Spinnaker production completion",
+      "calculation": "Median elapsed time from PR merge to first production deployment containing the change"
+    },
+    "changeFailureRate": {
+      "sourceOfTruth": "Spinnaker production deployments with rollback, incident, or failed verification markers",
+      "calculation": "Failed production deployments divided by total production deployments"
+    },
+    "failedDeploymentRecoveryTime": {
+      "sourceOfTruth": "Spinnaker rollback and remediation deployment events",
+      "calculation": "Median elapsed time from failed deployment detection to recovered production state"
+    }
+  },
+  "filters": {
+    "teams": ["Platform", "Growth", "Core Banking", "Data"],
+    "repositories": ["payments-api", "checkout-web", "identity-service", "ledger-worker", "analytics-jobs"],
+    "services": ["payments", "checkout", "identity", "ledger", "analytics"],
+    "environments": ["production", "staging"]
+  },
+  "kpis": [
+    {
+      "id": "deploymentFrequency",
+      "label": "Deployment frequency",
+      "value": 4.4,
+      "unit": "deploys/day",
+      "trend": 12,
+      "status": "elite",
+      "description": "Successful production deployments per day"
+    },
+    {
+      "id": "leadTimeForChanges",
+      "label": "Lead time for changes",
+      "value": 18.6,
+      "unit": "hours",
+      "trend": -9,
+      "status": "high",
+      "description": "Median PR merge to production time"
+    },
+    {
+      "id": "changeFailureRate",
+      "label": "Change failure rate",
+      "value": 8.7,
+      "unit": "%",
+      "trend": -3,
+      "status": "high",
+      "description": "Production deploys requiring rollback or remediation"
+    },
+    {
+      "id": "failedDeploymentRecoveryTime",
+      "label": "Failed deployment recovery time",
+      "value": 42,
+      "unit": "minutes",
+      "trend": -18,
+      "status": "elite",
+      "description": "Median time from failure detection to recovery"
+    }
+  ],
+  "repositoryLeadTimeRankings": [
+    {
+      "repository": "analytics-jobs",
+      "team": "Data",
+      "service": "analytics",
+      "medianLeadTimeHours": 41.5,
+      "p95LeadTimeHours": 88.2,
+      "openChanges": 7
+    },
+    {
+      "repository": "ledger-worker",
+      "team": "Core Banking",
+      "service": "ledger",
+      "medianLeadTimeHours": 29.8,
+      "p95LeadTimeHours": 61.4,
+      "openChanges": 4
+    },
+    {
+      "repository": "identity-service",
+      "team": "Platform",
+      "service": "identity",
+      "medianLeadTimeHours": 22.4,
+      "p95LeadTimeHours": 45.1,
+      "openChanges": 3
+    },
+    {
+      "repository": "payments-api",
+      "team": "Core Banking",
+      "service": "payments",
+      "medianLeadTimeHours": 14.2,
+      "p95LeadTimeHours": 27.6,
+      "openChanges": 2
+    },
+    {
+      "repository": "checkout-web",
+      "team": "Growth",
+      "service": "checkout",
+      "medianLeadTimeHours": 9.7,
+      "p95LeadTimeHours": 18.3,
+      "openChanges": 1
+    }
+  ]
+}
